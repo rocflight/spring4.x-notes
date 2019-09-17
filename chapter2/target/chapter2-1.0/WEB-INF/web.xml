@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+           version="3.0">
+    <!--从类路径下加载spring配置文件,classpath特指类路径下加载,多个配置文件以逗号或空格分隔-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:smart-context.xml</param-value>
+    </context-param>
+    <!--负责启动spring容器的监听器,引用上面的spring配置文件-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!--springMVC servlet-->
+    <servlet>
+        <servlet-name>smart</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <!--springMVC拦截的url-->
+    <servlet-mapping>
+        <servlet-name>smart</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+
+</web-app>
